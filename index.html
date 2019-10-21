@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Weather Dashboard</title>
+</head>
+<body>
+    
+    <div class="jumbotron"><h1><b>Weather Dashboard</b></h1></div>
+
+    <!-- <div class="active-cyan-3 active-cyan-4">
+        <input class="form-control col-6 " type="text" placeholder="Paris" id="city">
+    </div> -->
+
+    <div class="row">
+
+        <div class="col-3 cities nopadding">
+            <ul>
+                <li> <input class="text-center form-control" type="text" placeholder="Search" id="city"></li> 
+                <li> <button class="btn-info" onclick="meteo('Paris')">Paris</button> </li>
+                <li> <button class="btn-info" onclick="meteo('Seoul')">Seoul</button> </li>
+                <li> <button class="btn-info" onclick="meteo('Hong Kong')">Hong Kong</button> </li>
+                <li> <button class="btn-info" onclick="meteo('Toronto')">Toronto</button> </li>
+                <li> <button class="btn-info" onclick="meteo('Bangkok')">Bangkok</button> </li>
+                <li> <button class="btn-info" onclick="meteo('Phnom Penh')">Phnom Penh</button> </li>
+                <li> <button class="btn-info" onclick="meteo('Munich')">Munich</button> </li>
+            </ul>
+        </div>
+
+        <div id="showWeather" class="col-8 nopadding"></div> 
+
+    </div>
+
+    <script>
+    
+        
+    let city = $('#city').val();
+    let key = "d6bc89f330d3b9e66d28675d185ec700";
+    let url = "http://api.openweathermap.org/data/2.5/forecast";
+
+    function meteo (city) {
+    $.ajax({
+        url: url, //API Call
+        dataType: "json",
+        type: "GET",
+        data: {
+            q: city,
+            appid: key,
+            units: "metric",
+            cnt: "5"
+        },
+        success: function (data) {
+            console.log(data);
+            
+            let result = "";
+            result += `<h1><b>${data.city.name}</b></h1> </br></br>`; 
+            $.each(data.list, function (index, val) {
+                result += `<div>`
+                result += "<h3><b>Day " + (index + 1) + "</b></h3>"
+                result += "<img src='https://openweathermap.org/img/w/" + val.weather[0].icon + ".png'> </br>" 
+                result += "<b>" + val.weather[0].description.charAt(0).toUpperCase() + val.weather[0].description.slice(1) + "</b> </br>";
+                result += "</h3> <b>Average temperature  :</b> " + val.main.temp + "&degC </br>"
+                result += "<b>Humitidty level:</b> " + val.main.humidity + "</br>"
+                result += "<b>Wind speed:</b> " + val.wind.speed + "</br>"
+
+                result += "</div> </br>" 
+            });
+            $("#showWeather").html(result);
+        }
+    });
+    };
+
+    $("#city").on('keyup', function (e) {
+            if (e.keyCode === 13) {
+                meteo($('#city').val())
+            }
+        });
+
+
+
+    </script>
+</body>
+</html>

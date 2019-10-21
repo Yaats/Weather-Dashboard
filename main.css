@@ -1,0 +1,89 @@
+body {
+    background-color: #E9ECEF !important;
+}
+
+.jumbotron {
+    text-align: center;
+    margin-bottom: 0 !important;
+    padding: 10rem !important;
+}
+
+.active-cyan-4 input[type=text]:focus:not([readonly]) {
+border: 1px solid #4dd0e1;
+box-shadow: 0 0 0 2px #4dd0e1;
+}
+.active-cyan-3 input[type=text] {
+border: 0px solid #4dd0e1;
+box-shadow: 0 0 0 1px #4dd0e1;
+}
+
+#showWeather {
+    text-align: center;
+}
+
+.cities {
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+img {
+    width: 100px;
+}
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    float: left;
+    width: 100%;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.form-control {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #17A2B9 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    color: white !important;
+}
+
+input[type="text"]:focus,
+select.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: white !important;
+}
+
+.row {
+    margin: 0 !important;
+}
+
+::-webkit-input-placeholder {
+   font-style: italic;
+}
+:-moz-placeholder {
+   font-style: italic;  
+}
+::-moz-placeholder {
+   font-style: italic;  
+}
+:-ms-input-placeholder {  
+   font-style: italic; 
+}
